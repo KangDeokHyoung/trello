@@ -1,0 +1,29 @@
+#main-content-header {
+  h4 {
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 5px;
+  }
+  margin-bottom: 30px;
+  .breadcrumb-list-wrap {
+    .breadcrumb {
+      display: flex;
+      text-align: center;
+      background: url(../../img/breadcrumb.png) 0px -2px no-repeat;
+      padding-left: 20px;
+
+      li {
+        padding-right: 8px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+#main-content-body {
+  .main-content-list-wrap {
+    display: flex;
+    justify-content: space-between;
+    // margin: 0 -6px;
+  }
+}

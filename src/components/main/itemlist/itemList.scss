@@ -1,0 +1,130 @@
+#main-content-list-box {
+  width: 520px;
+  height: 100%;
+  //   margin: 0 6px;
+  .main-do-list-title {
+    text-align: center;
+    background-color: #63ceb5;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 12px;
+    border-radius: 2px;
+  }
+  .Todo {
+    background-color: #63ceb5;
+  }
+  .Doing {
+    background-color: #a1b7f5;
+  }
+  .Done {
+    background-color: #77d2f8;
+  }
+
+  .main-do-list {
+    .listTodo {
+      background-color: #d3ece6;
+    }
+    .listDoing {
+      background-color: #d1daf4;
+    }
+    .listDone {
+      background-color: #c9e9f6;
+    }
+    .main-do-list-bg {
+      height: 100%;
+      border-radius: 2px;
+      padding: 15px 16px;
+      box-shadow: 3px 4px 5px 0px rgba(93, 88, 89, 0.23);
+      .list-title {
+        color: #838383;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        align-items: center;
+        .list-title-icon {
+          font-size: 25px;
+          cursor: pointer;
+        }
+      }
+      .list-input {
+        display: flex;
+        justify-content: space-between;
+        background: #fff;
+        border-radius: 4px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        padding-left: 8px;
+        padding-right: 3px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        box-shadow: 3px 4px 5px 0px rgba(93, 88, 89, 0.13);
+        margin-top: 12px;
+        .list-input-box {
+          width: 450px;
+          overflow: hidden;
+        }
+      }
+
+      .list-input:hover {
+        background: rgb(243, 243, 243);
+      }
+      .add-Card {
+        color: #777777;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 27px;
+        cursor: pointer;
+        .add-Card-icon {
+          font-size: 8px;
+        }
+        span {
+          margin-left: 5px;
+        }
+      }
+      .list-bottom-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        margin-top: 17px;
+
+        .day {
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          span {
+            margin-left: 5px;
+          }
+        }
+        .checkBox {
+          width: 16px;
+          height: 16px;
+          background-color: white;
+          cursor: pointer;
+          position: relative;
+          border-radius: 20px;
+        }
+        .checkBoxOn {
+          cursor: pointer;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 18px;
+          height: 18px;
+          border-radius: 4px;
+          color: gray;
+        }
+      }
+    }
+  }
+}

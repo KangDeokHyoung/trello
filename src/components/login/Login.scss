@@ -1,0 +1,124 @@
+#login-form {
+  background: #3e4960;
+  border-radius: 8px;
+  p {
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 3px;
+    color: rgb(255, 177, 177);
+  }
+
+  p::before {
+    display: inline;
+    content: "⚠ ";
+  }
+  padding: 45px 0;
+  .login-logo {
+    background: url(../../img/login-logo.png);
+    width: 166px;
+    height: 36px;
+    margin: 0 auto;
+  }
+  .login-input {
+    margin: 0 auto;
+    width: 300px;
+    flex-direction: column;
+    display: flex;
+    input:first-child {
+      margin-top: 0;
+    }
+    input {
+      width: 100%;
+      padding: 15px;
+      height: 44px;
+      color: black;
+      margin-top: 13px;
+      border: 2px solid #dbdfe7;
+      border-radius: 4px;
+      font-weight: 400;
+    }
+    input::placeholder {
+      color: #9bb5c8;
+      font-weight: bold;
+    }
+    input:focus {
+      box-sizing: border-box;
+      border: 2px solid #4e7ee2;
+    }
+    .login-button-signIn {
+      font-weight: bold;
+      color: white;
+      background-color: #4e7ee2;
+      // background-color: rgb(226, 163, 80);
+      padding: 11px 20px;
+      border-radius: 5px;
+      margin-top: 15px;
+      appearance: none;
+      border: 1px solid #333;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .isLogin {
+      background-color: #4e7ee2;
+    }
+  }
+  .row-flex {
+    display: flex;
+    margin-top: 23px;
+    justify-content: space-between;
+  }
+  .login-text-singIn {
+    display: flex;
+    align-items: center;
+    color: #afcafa;
+    font-size: 12px;
+
+    .login-text-singIn-btn {
+      cursor: pointer;
+      margin-left: 10px;
+      color: white;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .icon {
+      margin-right: 5px;
+    }
+  }
+
+  .h1-text {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 19px;
+    color: #92a6cb;
+    // color: rgb(226, 163, 80);
+  }
+  .isLogin {
+    color: #92a6cb;
+  }
+
+  .account {
+    position: absolute;
+    top: -36px;
+    left: 20px;
+    background: #304f92;
+    cursor: pointer;
+    border-radius: 16px 16px 0px 0px;
+    padding: 0 15px;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    height: 36px;
+    width: 170px;
+
+    .next {
+      font-size: 20px;
+    }
+    .account-text {
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-top: 5px;
+    }
+  }
+}

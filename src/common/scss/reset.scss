@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  letter-spacing: 0.4px;
+
+  /* scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c5c6ca;
+    border-radius: 25px 25px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c5c6ca;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  // box-sizing: inherit;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Dotum", "돋움", "맑은고딕", "Malgun Gothic",
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #191919;
+}
+
+body.col-resizing {
+  cursor: col-resize !important;
+  user-select: none;
+  * {
+    cursor: col-resize !important;
+  }
+}
+
+body.row-resizing {
+  cursor: row-resize !important;
+  user-select: none;
+  * {
+    cursor: row-resize !important;
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+form {
+  display: block;
+}
+input {
+  border: 0;
+}
+
+@mixin no-outline {
+  &,
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+a {
+  @include no-outline;
+  display: block;
+  text-decoration: none;
+}
+
+i {
+  display: inline-block;
+}
+
+button {
+  @include no-outline;
+  border: none;
+  cursor: pointer;
+  background-color: initial;
+  line-height: 0;
+}
+
+h4,
+h3 {
+  letter-spacing: 0.5px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  min-width: 1366px;
+  min-height: 768px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.simplebar-track {
+  pointer-events: initial !important;
+
+  &:hover {
+    cursor: initial !important;
+  }
+
+  .simplebar-scrollbar {
+    &::before {
+      opacity: 0 !important;
+      background: #c5c6ca;
+    }
+  }
+
+  .simplebar-visible {
+    &::before {
+      opacity: 1 !important;
+    }
+  }
+}

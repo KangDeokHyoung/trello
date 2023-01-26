@@ -1,0 +1,114 @@
+.main-sidebar {
+  width: 293px;
+  height: 100%;
+  position: relative;
+
+  .sidebar-uitls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 254px;
+    height: 100%;
+    background-color: #3e4960;
+    .main-sidebar-profile {
+      text-align: center;
+      background-color: #fff;
+      height: 140px;
+      width: 100%;
+      border-right: 1px solid #dfe1e6;
+      .main-sidebar-profile-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        .profile-img {
+          background: url(../../../img/ps.png) 0 0 no-repeat;
+          width: 78px;
+          height: 78px;
+          margin: 0 auto;
+        }
+        .profile-name {
+          color: #666666;
+          margin-top: 5px;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          .title-bold {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .main-sidebar-list-container {
+      padding: 32px 12px;
+      color: white;
+      .main-sidebar-list-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 20px;
+        .Button {
+          background-color: transparent;
+          padding: 0;
+        }
+        .Button:visited {
+          background-color: transparent;
+        }
+        .Button:active {
+          background-color: transparent;
+        }
+
+        .list-title-info {
+          color: #92a6cb;
+          cursor: pointer;
+          font-size: 18px;
+          font-weight: bold;
+        }
+        .Placeholder {
+          width: 100%;
+          height: 100%;
+          position: fixed;
+        }
+      }
+      .main-sidebar-list {
+        margin-top: 20px;
+        .sidebar-list-items {
+          li {
+            background-color: #333c4e;
+            padding: 0 10px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            border-radius: 2px;
+            margin-bottom: 5px;
+            font-size: 12px;
+            position: relative;
+            cursor: pointer;
+            .list-items-ioappssharp {
+              color: #92a6cb;
+            }
+            .list-items-hichevronright {
+              position: absolute;
+              top: 9px;
+              right: 8px;
+              font-size: 18px;
+              color: #92a6cb;
+            }
+
+            .list-items-title {
+              padding-left: 5px;
+            }
+            i.sidebar-list-items-info {
+              background: url(../../../img/list_icon3.png) 0px 0px no-repeat;
+              padding-left: 10px;
+              width: 10px;
+              height: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
