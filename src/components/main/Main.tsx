@@ -37,20 +37,6 @@ const Main: React.FC<Props> = (props) => {
       </div>
       <div id="main-content-body">
         <div className="main-content-list-wrap">
-<<<<<<< HEAD
-          {checked.map((_, i) => {
-            return (
-              <ItemList
-                checked={checked[i]}
-                checkHandler={() => checkHandler(i)}
-              />
-            );
-          })}
-
-          <ItemList checked={checked[0]} checkHandler={() => checkHandler(0)} />
-          <ItemList checked={checked[1]} checkHandler={() => checkHandler(1)} />
-          <ItemList checked={checked[2]} checkHandler={() => checkHandler(2)} />
-=======
           {checked.map((_, i) => (
             <ItemList
               Do={Do[i]}
@@ -59,7 +45,6 @@ const Main: React.FC<Props> = (props) => {
               checkHandler={() => checkHandler(i)}
             />
           ))}
->>>>>>> 06861796fffb07d9536a4bb615848f865255581e
         </div>
       </div>
     </>

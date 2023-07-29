@@ -98,7 +98,9 @@ const Login = () => {
             </div>
           </div>
           <Button type="submit" className="login-button-signIn">
-            {isLoading ? "로딩중" : "Sign Up"}
+            <div>
+              {isLoading ? "로딩중" : "Sign Up"}
+            </div>
           </Button>
         </div>
       </form>
