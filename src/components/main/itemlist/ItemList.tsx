@@ -2,10 +2,21 @@ import React, { useEffect, useState } from "react";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { BiTime } from "react-icons/bi";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { DeleteCardComponent, AddCardComponet } from "../../ui/popover/CustomComponent";
+import {
+  DeleteCardComponent,
+  AddCardComponet,
+} from "../../ui/popover/CustomComponent";
+import { db, getCities } from "common/components/firebase";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  deleteDoc,
+  query,
+  orderBy,
+} from "firebase/firestore";
 import "./itemList.scss";
-import { db } from "common/components/firebase";
-import { collection, getDocs, addDoc, doc, deleteDoc, query, orderBy } from "firebase/firestore";
 
 interface Props {
   checked: number;
@@ -22,34 +33,36 @@ const MainDoListTitle: React.FC<{ Do: string }> = ({ Do }) => {
 };
 
 const ItemList: React.FC<Props> = ({ Do, checked, checkHandler }) => {
+  const data = getCities(db);
+
   const [users, setUsers] = useState<any[]>([]);
-  const usersCollectionRef = collection(db, "todos");
-  const getTodos = async () => {
-    const q = query(usersCollectionRef, orderBy("dates", "desc"));
-    const response = await getDocs(q);
-    const data = response.docs.map((el: any) => ({ data: el.data(), id: el.id }));
-    setUsers(data);
-  };
+  // const usersCollectionRef = collection(db, "todos");
+  // const getTodos = async () => {
+  //   const q = query(usersCollectionRef, orderBy("dates", "desc"));
+  //   const response = await getDocs(q);
+  //   const data = response.docs.map((el: any) => ({ data: el.data(), id: el.id }));
+  //   setUsers(data);
+  // };
 
-  useEffect(() => {
-    getTodos();
-  }, []);
+  // useEffect(() => {
+  //   getTodos();
+  // }, []);
 
-  const createUser = async (addCard: string) => {
-    const dates = new Date().getTime(); // getTime 숫자로 변경해준다.
-    await addDoc(usersCollectionRef, { addCard, dates });
-    getTodos();
-  };
+  // const createUser = async (addCard: string) => {
+  //   const dates = new Date().getTime(); // getTime 숫자로 변경해준다.
+  //   await addDoc(usersCollectionRef, { addCard, dates });
+  //   getTodos();
+  // };
 
-  const deleteUser = async (id: string) => {
-    const usersDoc = doc(db, "todos", id);
-    await deleteDoc(usersDoc);
-    getTodos();
-  };
+  // const deleteUser = async (id: string) => {
+  //   const usersDoc = doc(db, "todos", id);
+  //   await deleteDoc(usersDoc);
+  //   getTodos();
+  // };
 
   return (
     <div id="main-content-list-box">
-      <MainDoListTitle Do={Do} />
+      {/* <MainDoListTitle Do={Do} />
       <div className="main-do-list">
         <div className={`main-do-list-bg list${Do}`}>
           <div className="list-title">
@@ -81,7 +94,7 @@ const ItemList: React.FC<Props> = ({ Do, checked, checkHandler }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

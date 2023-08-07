@@ -1,16 +1,23 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC6V8GqbsLoUd8NQw-3TcgRBdmGjL8a7wE",
-  authDomain: "login-c4740.firebaseapp.com",
-  projectId: "login-c4740",
-  storageBucket: "login-c4740.appspot.com",
-  messagingSenderId: "104017873207",
-  appId: "1:104017873207:web:2648aad1f0cd2caac572b2",
-  measurementId: "G-1601F4Y86E",
+  apiKey: "AIzaSyBmINRkcYxiAYE5rlt9AJxcVXhY5IIrxzk",
+  authDomain: "trello-ab4a5.firebaseapp.com",
+  projectId: "trello-ab4a5",
+  storageBucket: "trello-ab4a5.appspot.com",
+  messagingSenderId: "69058671030",
+  appId: "1:69058671030:web:246c15ef49012d16d8d117",
+  measurementId: "G-Y17L680H76",
 };
 
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
+
+export async function getCities(db) {
+  const citiesCol = collection(db, "cities");
+  const citySnapshot = await getDocs(citiesCol);
+  const cityList = citySnapshot.docs.map((doc) => doc.data());
+  return cityList;
+}

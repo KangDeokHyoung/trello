@@ -5,44 +5,44 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { onSignIn } from "store/slice/LoginSlice";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  getIdToken,
+} from "firebase/auth";
 import "./Login.scss";
 
-const Login = () => {
+type T_Login = { email: string; password: string };
+
+export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const auth = getAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<T_Login>({ defaultValues: { email: "", password: "" } });
 
-  const SignUpHandler = () => {
-    navigate("/signup");
-  }
+  const signUpHandler = () => navigate("/signup");
 
-  const LoginSubmit = async (data: any) => {
+  const loginSunmit = async (data: T_Login) => {
+    const { email, password } = data;
     setIsLoading(true);
-    const url =
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC6V8GqbsLoUd8NQw-3TcgRBdmGjL8a7wE";
     try {
-      const res = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-          returnSecureToken: true,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
-      const response = await res.json();
-      if (!res.ok) throw new Error("이메일 또는 비밀번호가 일치하지 않습니다.");
-      dispatch(onSignIn(response.idToken));
-      navigate("/main");
-    } catch (err: any) {
-      alert(err.message);
-    } finally {
-      setIsLoading(false);
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      const { operationType, user } = res;
+      if (operationType === "signIn") {
+        const token = await getIdToken(user);
+        localStorage.setItem("idToken", token);
+        navigate("/main");
+        setIsLoading(false);
+      }
+    } catch (err) {
+      console.log("이메일 또는 비밀번호가 일치하지 않습니다.");
     }
   };
 
@@ -50,21 +50,27 @@ const Login = () => {
     <div id="login-form">
       <div className="login-logo" />
       <h1 className="h1-text">Welcome, Sign in to your Account!</h1>
-      <form onSubmit={handleSubmit(LoginSubmit)}>
+      <form onSubmit={handleSubmit(loginSunmit)}>
         <div className="login-input">
           <input
             placeholder="Email"
             {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
           />
-          {errors.email && errors.email.type === "required" && <p>필수 항목입니다.</p>}
-          {errors.email && errors.email.type === "pattern" && <p>Email 형식으로 작성 하십시오</p>}
+          {errors.email && errors.email.type === "required" && (
+            <p>필수 항목입니다.</p>
+          )}
+          {errors.email && errors.email.type === "pattern" && (
+            <p>Email 형식으로 작성 하십시오</p>
+          )}
 
           <input
             type="password"
             placeholder="Password"
-            {...register("password", { required: true, minLength: 7 })}
+            {...register("password", { required: true, minLength: 5 })}
           />
-          {errors.password && errors.password.type === "required" && <p>필수 항목입니다.</p>}
+          {errors.password && errors.password.type === "required" && (
+            <p>필수 항목입니다.</p>
+          )}
           {errors.password && errors.password.type === "minLength" && (
             <p>패스워드 글자는 최소 6글자 이상입니다.</p>
           )}
@@ -73,7 +79,7 @@ const Login = () => {
             <div className="login-text-singIn">
               <BsInfoCircleFill className="icon" />
               <span>Don`t have an account yet?</span>
-              <div className="login-text-singIn-btn" onClick={() => SignUpHandler()}>
+              <div className="login-text-singIn-btn" onClick={signUpHandler}>
                 Sign up
               </div>
             </div>
@@ -86,5 +92,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;

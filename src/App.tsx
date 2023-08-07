@@ -1,26 +1,30 @@
 import React from "react";
-
+import { Provider } from "react-redux";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
-import LoginPage from "./page/LoginPage";
-import MainPage from "./page/MainPage";
+// import LoginPage from "./pages/LoginPage";
+// import MainPage from "./pages/MainPage";
 import MainLayout from "./layout/main/MainLayout";
-import Login from "components/login/Login";
-import SignUp from "components/login/SignUp";
+// import Login from "components/login/Login";
+// import SignUp from "components/login/SignUp";
+import Router from "router/Router";
+import { store } from "store/store";
 
-const AuthElement = ({ children }: any) => {
-  const tokens = localStorage.getItem("token");
-  return tokens ? children : <Navigate to="/" />;
-};
+// const AuthElement = ({ children }: any) => {
+//   const tokens = localStorage.getItem("token");
+//   return tokens ? children : <Navigate to="/" />;
+// };
 
-const LoginElement = ({ children }: any) => {
-  const tokens = localStorage.getItem("token");
-  return !tokens ? children : <Navigate to="/main" />;
-};
+// const LoginElement = ({ children }: any) => {
+//   const tokens = localStorage.getItem("token");
+//   return !tokens ? children : <Navigate to="/main" />;
+// };
 
-const App = () => {
+const App = ({ tab }: { tab: string }) => {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Router />
+        {/* <Routes>
         <Route path="/" element={<Navigate replace to="/login" />} />
         <Route
           path="/"
@@ -43,8 +47,9 @@ const App = () => {
         >
           <Route path="/main" element={<MainPage />} />
         </Route>
-      </Routes>
-    </BrowserRouter>
+      </Routes> */}
+      </BrowserRouter>
+    </Provider>
   );
 };
 

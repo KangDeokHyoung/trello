@@ -5,9 +5,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { onSignIn } from "store/slice/LoginSlice";
-import "./Login.scss";
+import "./SignUp.scss";
 
-const Login = () => {
+export const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Password = useRef();
@@ -60,15 +60,21 @@ const Login = () => {
             placeholder="Email"
             {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
           />
-          {errors.email && errors.email.type === "required" && <p>필수 항목입니다.</p>}
-          {errors.email && errors.email.type === "pattern" && <p>Email 형식으로 작성 하십시오</p>}
+          {errors.email && errors.email.type === "required" && (
+            <p>필수 항목입니다.</p>
+          )}
+          {errors.email && errors.email.type === "pattern" && (
+            <p>Email 형식으로 작성 하십시오</p>
+          )}
 
           <input
             type="password"
             placeholder="Password"
             {...register("password", { required: true, minLength: 7 })}
           />
-          {errors.password && errors.password.type === "required" && <p>필수 항목입니다.</p>}
+          {errors.password && errors.password.type === "required" && (
+            <p>필수 항목입니다.</p>
+          )}
           {errors.password && errors.password.type === "minLength" && (
             <p>패스워드 글자는 최소 6글자 이상입니다.</p>
           )}
@@ -81,31 +87,32 @@ const Login = () => {
               validate: (value) => value === Password.current,
             })}
           />
-          {errors.password_Confirm && errors.password_Confirm.type === "required" && (
-            <p>필수 항목입니다.</p>
-          )}
-          {errors.password_Confirm && errors.password_Confirm.type === "validate" && (
-            <p>패스워드가 일치하지 않습니다.</p>
-          )}
+          {errors.password_Confirm &&
+            errors.password_Confirm.type === "required" && (
+              <p>필수 항목입니다.</p>
+            )}
+          {errors.password_Confirm &&
+            errors.password_Confirm.type === "validate" && (
+              <p>패스워드가 일치하지 않습니다.</p>
+            )}
 
           <div className="row-flex">
             <div className="login-text-singIn">
               <BsInfoCircleFill className="icon" />
               <span>Already have an ID?</span>
-              <div className="login-text-singIn-btn" onClick={() => LoginHandler()}>
+              <div
+                className="login-text-singIn-btn"
+                onClick={() => LoginHandler()}
+              >
                 Login
               </div>
             </div>
           </div>
           <Button type="submit" className="login-button-signIn">
-            <div>
-              {isLoading ? "로딩중" : "Sign Up"}
-            </div>
+            <div>{isLoading ? "로딩중" : "Sign Up"}</div>
           </Button>
         </div>
       </form>
     </div>
   );
 };
-
-export default Login;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./Main.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import ItemList from "../main/itemlist/ItemList";
+import "./Main.scss";
 
 export interface Props {
   checked?: number;
@@ -11,7 +11,7 @@ export interface Props {
   onChange?: (check: number) => void;
 }
 
-const Main: React.FC<Props> = (props) => {
+export const Main: React.FC<Props> = (props) => {
   const [checked, setChecked] = useState([0, 0, 0]);
   const Do = ["Todo", "Doing", "Done"];
 
@@ -50,5 +50,3 @@ const Main: React.FC<Props> = (props) => {
     </>
   );
 };
-
-export default Main;

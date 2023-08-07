@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 export interface CounterState {
   isLoggedIn: boolean;
   loginId: string;
@@ -21,8 +20,6 @@ export const counterSlice: any = createSlice({
   reducers: {
     onLogin: (state, action) => {
       localStorage.get("token");
-      // state.token = action.payload;
-      // state.isLoggedIn = true;
     },
     onLogout: (state) => {
       localStorage.removeItem("token");
@@ -30,7 +27,6 @@ export const counterSlice: any = createSlice({
     onSignIn: (state, action) => {
       localStorage.setItem("token", action.payload);
     },
-
   },
 });
 

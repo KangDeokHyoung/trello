@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Login from "./Login";
-import SignUp from "./SignUp";
+// import Login from "./Login";
+// import SignUp from "./SignUp";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
