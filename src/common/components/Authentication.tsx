@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { getAuth, onAuthStateChanged, getIdToken, User } from "firebase/auth";
+import React from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export const Authentication = () => {
-  const idToken = localStorage.getItem("idToken");
   const navigate = useNavigate();
-
+  const location = useLocation();
   const auth = getAuth();
+  const path = location.pathname.split("/")[1];
+  const pathMain = path === "main";
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      // 여기부분은 유지
-      console.log("1");
+      // login 성공시
+      if (!pathMain) navigate("/main");
     } else {
-      navigate("/login");
+      // 로그아웃되면
+      if (pathMain) navigate("/login");
     }
   });
 

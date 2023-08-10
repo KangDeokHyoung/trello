@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { Popover, Whisper, Button } from "rsuite";
 import { IoMdTrash } from "react-icons/io";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { BsPlusLg } from "react-icons/bs";
-import { onLogout } from "store/slice/LoginSlice";
-import { getAuth, deleteUser } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import "./CustomComponent.scss";
 
 export const DeleteCardComponent = ({
@@ -84,13 +81,8 @@ export const UserComponet = ({ placement, children }: any) => (
 );
 
 const PopoverUser = React.forwardRef(({ ...props }: any, ref: any) => {
-  const navigate = useNavigate();
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  const deleteUserHandler = () => {
-    localStorage.removeItem("idToken");
-    navigate("/login");
-  };
+  const auth = getAuth();
+  const deleteUserHandler = () => auth.signOut();
 
   return (
     <div className="user-popover-wrap">
