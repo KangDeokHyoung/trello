@@ -1,5 +1,13 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  query,
+  orderBy,
+  onSnapshot,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBmINRkcYxiAYE5rlt9AJxcVXhY5IIrxzk",
@@ -21,3 +29,4 @@ export async function getCities(db) {
   const cityList = citySnapshot.docs.map((doc) => doc.data());
   return cityList;
 }
+
