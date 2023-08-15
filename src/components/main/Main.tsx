@@ -1,7 +1,15 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import React, { useState, useEffect } from "react";
 import ItemList from "../main/itemlist/ItemList";
+import { db } from "common/components/firebase";
+import {
+  collection,
+  query,
+  onSnapshot,
+  getFirestore,
+  doc,
+  getDoc,
+} from "firebase/firestore";
+import { getApi } from "common/func/Api";
 import "./Main.scss";
 
 export interface Props {
@@ -23,6 +31,23 @@ export const Main: React.FC<Props> = (props) => {
     });
   };
 
+  const h = async () => {
+    const docRef = doc(db, "cities", "SF");
+    const docSnap = await getDoc(docRef);
+    console.log({ docSnap });
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  };
+
+  useEffect(() => {
+    getApi("work");
+    h();
+  }, []);
   return (
     <>
       <div id="main-content-header">
