@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ItemList from "../main/itemlist/ItemList";
 import { db } from "common/components/firebase";
-import {
-  collection,
-  query,
-  onSnapshot,
-  getFirestore,
-  doc,
-  getDoc,
-} from "firebase/firestore";
-import { getApi } from "common/func/Api";
+import { collection, getDocs } from "firebase/firestore";
 import "./Main.scss";
+import { getData } from "common/func/Api";
 
 export interface Props {
   checked?: number;
@@ -31,23 +24,26 @@ export const Main: React.FC<Props> = (props) => {
     });
   };
 
-  const h = async () => {
-    const docRef = doc(db, "cities", "SF");
-    const docSnap = await getDoc(docRef);
-    console.log({ docSnap });
+  const [todos, setTodos] = useState<any>([]);
 
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
-    }
+  const fetchPost = async () => {
+    await getDocs(collection(db, "kim")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setTodos(newData);
+    });
   };
 
   useEffect(() => {
-    getApi("work");
-    h();
+    fetchPost();
   }, []);
+
+  const result = getData();
+
+  console.log(result);
+
   return (
     <>
       <div id="main-content-header">
